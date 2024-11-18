@@ -1,64 +1,64 @@
-# New App
+# نيو آب
 
-## Overview
+## نظرة عامة
 
-New App is a cryptocurrency faucet that allows users to receive small amounts of various cryptocurrencies supported by FaucetPay. Users can select a currency, enter their wallet address, and request a payout directly to their FaucetPay wallet.
+نيو آب هو صنبور للعملات الرقمية يسمح للمستخدمين باستلام مبالغ صغيرة من مختلف العملات الرقمية المدعومة من FaucetPay. يمكن للمستخدمين اختيار العملة، وإدخال عنوان المحفظة الخاصة بهم، وطلب الدفع مباشرةً إلى محفظة FaucetPay الخاصة بهم.
 
-## User Journeys
+## رحلات المستخدم
 
-### 1. Requesting a Payout
+### 1. طلب الدفع
 
-1. **Landing Page**
+1. **الصفحة الرئيسية**
 
-   - The user navigates to the app and sees a simple form with options to select a cryptocurrency and enter their wallet address.
+   - ينتقل المستخدم إلى التطبيق ويرى نموذجًا بسيطًا به خيارات لتحديد العملة الرقمية وإدخال عنوان المحفظة.
 
-2. **Selecting Currency**
+2. **اختيار العملة**
 
-   - The user clicks on the "Select Currency" dropdown.
-   - A list of all supported currencies is displayed.
-   - The user selects their desired currency (e.g., BTC, ETH, DOGE).
+   - ينقر المستخدم على قائمة "اختر العملة".
+   - يتم عرض قائمة بجميع العملات المدعومة.
+   - يختار المستخدم العملة المطلوبة (مثل BTC، ETH، DOGE).
 
-3. **Entering Wallet Address**
+3. **إدخال عنوان المحفظة**
 
-   - The user enters their FaucetPay wallet address associated with the selected currency into the "Your Wallet Address" input field.
+   - يدخل المستخدم عنوان محفظة FaucetPay المرتبط بالعملة المحددة في حقل "عنوان محفظتك".
 
-4. **Request Payout**
+4. **طلب الدفع**
 
-   - The user clicks the "Request Payout" button.
-   - The app displays a loading state indicating the request is being processed.
+   - ينقر المستخدم على زر "طلب الدفع".
+   - يعرض التطبيق حالة تحميل تشير إلى أن الطلب قيد المعالجة.
 
-5. **Receiving Confirmation**
+5. **استلام التأكيد**
 
-   - Upon successful transaction, the user receives a confirmation message displaying the amount sent and the currency.
-   - If there's an error (e.g., invalid address, insufficient funds), an error message is displayed.
+   - عند نجاح المعاملة، يتلقى المستخدم رسالة تأكيد تعرض المبلغ المرسل والعملة.
+   - إذا كان هناك خطأ (مثل عنوان غير صالح، أو نقص في الأموال)، يتم عرض رسالة خطأ.
 
-6. **Repeat Requests**
+6. **تكرار الطلبات**
 
-   - The user can repeat the process to request payouts in different currencies or the same currency after any cooldown periods enforced by the faucet.
+   - يمكن للمستخدم تكرار العملية لطلب دفعات بعملات مختلفة أو نفس العملة بعد أي فترات انتظار مفروضة من قبل الصنبور.
 
-## External API Services
+## خدمات واجهة برمجة التطبيقات الخارجية (API)
 
-- **FaucetPay API**
+- **واجهة FaucetPay API**
 
-  - **Purpose**: To send cryptocurrency payments to users' FaucetPay wallets.
-  - **Usage**: The backend serverless function `sendPayment.js` communicates with FaucetPay's API to process payout requests securely.
-  - **Documentation**: [FaucetPay API Documentation](https://faucetpay.io/page/api-documentation)
+  - **الغرض**: إرسال مدفوعات العملات الرقمية إلى محافظ FaucetPay الخاصة بالمستخدمين.
+  - **الاستخدام**: تتواصل وظيفة الخادم الخلفي `sendPayment.js` مع واجهة FaucetPay API لمعالجة طلبات الدفع بأمان.
+  - **التوثيق**: [FaucetPay API Documentation](https://faucetpay.io/page/api-documentation)
 
-## Required Environment Variables
+## المتغيرات البيئية المطلوبة
 
-Create a `.env` file in the root directory and include the following variables:
+أنشئ ملفًا باسم `.env` في الدليل الجذري وقم بتضمين المتغيرات التالية:
 
-- **VITE_PUBLIC_SENTRY_DSN**: Your Sentry Data Source Name for frontend error logging.
-- **VITE_PUBLIC_SENTRY_DSN**: Your Sentry Data Source Name for backend error logging.
-- **VITE_PUBLIC_APP_ENV**: The environment (e.g., `development`, `production`).
-- **VITE_PUBLIC_APP_ID**: The application ID.
-- **PROJECT_ID**: The project ID.
-- **FAUCETPAY_API_KEY**: Your FaucetPay API key (keep this secret).
-- **PAYOUT_AMOUNT**: The amount to be sent to users (in the smallest unit of the currency, e.g., satoshis for BTC).
+- **VITE_PUBLIC_SENTRY_DSN**: معرف مصدر بيانات Sentry لتسجيل الأخطاء في الواجهة الأمامية.
+- **VITE_PUBLIC_SENTRY_DSN**: معرف مصدر بيانات Sentry لتسجيل الأخطاء في الخادم الخلفي.
+- **VITE_PUBLIC_APP_ENV**: البيئة (مثل `development`، `production`).
+- **VITE_PUBLIC_APP_ID**: معرف التطبيق.
+- **PROJECT_ID**: معرف المشروع.
+- **FAUCETPAY_API_KEY**: مفتاح API الخاص بـ FaucetPay (احتفظ به سريًا).
+- **PAYOUT_AMOUNT**: المبلغ الذي سيتم إرساله إلى المستخدمين (بالوحدة الأصغر للعملة، مثل satoshis لعملة BTC).
 
-## Notes
+## ملاحظات
 
-- Ensure that the `FAUCETPAY_API_KEY` and `PAYOUT_AMOUNT` are set correctly in the environment variables.
-- This app does not require user authentication; users can request payouts without signing in.
-- All sensitive API calls are handled on the backend to keep API keys secure.
-- Sentry is integrated for error logging on both frontend and backend.
+- تأكد من تعيين `FAUCETPAY_API_KEY` و `PAYOUT_AMOUNT` بشكل صحيح في المتغيرات البيئية.
+- هذا التطبيق لا يتطلب مصادقة المستخدم؛ يمكن للمستخدمين طلب الدفعات دون تسجيل الدخول.
+- يتم التعامل مع جميع الاستدعاءات الحساسة لواجهة API في الخادم الخلفي للحفاظ على أمان مفاتيح API.
+- تم دمج Sentry لتسجيل الأخطاء في الواجهة الأمامية والخلفية.

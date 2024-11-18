@@ -20,7 +20,7 @@ function App() {
 
   const requestPayout = async () => {
     if (!selectedCurrency() || !walletAddress()) {
-      setMessage("Please select a currency and enter your wallet address.");
+      setMessage("الرجاء اختيار عملة وإدخال عنوان محفظتك.");
       return;
     }
     setLoading(true);
@@ -39,30 +39,30 @@ function App() {
 
       const data = await response.json();
       if (response.ok) {
-        setMessage(`Success! ${data.amount} ${selectedCurrency().toUpperCase()} sent to your wallet.`);
+        setMessage(`تم بنجاح! تم إرسال ${data.amount} ${selectedCurrency().toUpperCase()} إلى محفظتك.`);
       } else {
-        setMessage(`Error: ${data.error}`);
+        setMessage(`خطأ: ${data.error}`);
       }
     } catch (error) {
       console.error("Error requesting payout:", error);
-      setMessage("An error occurred while processing your request.");
+      setMessage("حدث خطأ أثناء معالجة طلبك.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4">
+    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4" dir="rtl">
       <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold text-purple-600 mb-6 text-center">FaucetPay Faucet</h1>
+        <h1 class="text-3xl font-bold text-purple-600 mb-6 text-center">صنبور FaucetPay</h1>
         <div class="mb-4">
-          <label class="block text-gray-700 mb-2">Select Currency</label>
+          <label class="block text-gray-700 mb-2">اختر العملة</label>
           <select
             class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent box-border"
             value={selectedCurrency()}
             onInput={(e) => setSelectedCurrency(e.target.value)}
           >
-            <option value="">-- Select Currency --</option>
+            <option value="">-- اختر العملة --</option>
             <For each={currencies()}>
               {(currency) => (
                 <option value={currency}>{currency.toUpperCase()}</option>
@@ -71,10 +71,10 @@ function App() {
           </select>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 mb-2">Your Wallet Address</label>
+          <label class="block text-gray-700 mb-2">عنوان محفظتك</label>
           <input
             type="text"
-            placeholder="Enter your wallet address"
+            placeholder="أدخل عنوان محفظتك"
             class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent box-border"
             value={walletAddress()}
             onInput={(e) => setWalletAddress(e.target.value)}
@@ -87,7 +87,7 @@ function App() {
           onClick={requestPayout}
           disabled={loading()}
         >
-          {loading() ? "Processing..." : "Request Payout"}
+          {loading() ? "جاري المعالجة..." : "طلب الدفع"}
         </button>
         <Show when={message()}>
           <div class="mt-4 text-center text-gray-700">{message()}</div>
