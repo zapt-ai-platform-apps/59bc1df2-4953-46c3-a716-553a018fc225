@@ -1,4 +1,4 @@
-import { createSignal, onMount, Show } from "solid-js";
+import { createSignal, onMount, Show, For } from "solid-js";
 
 function App() {
   const [currencies, setCurrencies] = createSignal([]);
@@ -39,7 +39,7 @@ function App() {
 
       const data = await response.json();
       if (response.ok) {
-        setMessage(`Success! ${data.amount} ${selectedCurrency()} sent to your wallet.`);
+        setMessage(`Success! ${data.amount} ${selectedCurrency().toUpperCase()} sent to your wallet.`);
       } else {
         setMessage(`Error: ${data.error}`);
       }
@@ -52,13 +52,13 @@ function App() {
   };
 
   return (
-    <div class="min-h-screen bg-gradient-to-br from-purple-100 to-blue-100 p-4">
-      <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div class="h-full bg-gradient-to-br from-purple-100 to-blue-100 p-4">
+      <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
         <h1 class="text-3xl font-bold text-purple-600 mb-6 text-center">FaucetPay Faucet</h1>
         <div class="mb-4">
           <label class="block text-gray-700 mb-2">Select Currency</label>
           <select
-            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent box-border"
             value={selectedCurrency()}
             onInput={(e) => setSelectedCurrency(e.target.value)}
           >
@@ -75,7 +75,7 @@ function App() {
           <input
             type="text"
             placeholder="Enter your wallet address"
-            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-transparent box-border"
             value={walletAddress()}
             onInput={(e) => setWalletAddress(e.target.value)}
           />
